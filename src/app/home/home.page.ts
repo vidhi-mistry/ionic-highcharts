@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts/highcharts.src.js';
 
 
 @Component({
@@ -8,7 +8,6 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {chart: {
     type: 'spline',
@@ -74,6 +73,11 @@ series: [{
         0.7, 1.3, 0.4, 0.3]
 }]
   };
-  constructor() {}
 
+  chartCallback: Highcharts.ChartCallbackFunction = function (chart): void {
+    setTimeout(() => {
+        chart.reflow();
+    },0);
+}
+  constructor() {}
 }
